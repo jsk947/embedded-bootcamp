@@ -114,12 +114,9 @@ uint16_t adcvalue;
   {
     /* USER CODE END WHILE */
 	  adcvalue = adc_read();
+	  uint16_t pwm = 3200 + adcvalue * 3200 / 1023;
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, pwm);
 	  HAL_Delay(20);
-	  uint16_t pwm = 1000 + adcvalue * 1000 / 1023;
-
-	  __HAL_TIM_SET_COMPARE(&htim1,
-	                        TIM_CHANNEL_1,
-	                        pwm);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
